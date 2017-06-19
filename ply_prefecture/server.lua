@@ -73,7 +73,7 @@ AddEventHandler('ply_prefecture:CheckForLicences', function(licID)
 	if licence(licID) then
 		TriggerClientEvent("ply_prefecture:LicenseFalse", source)
 	else      
-		TriggerEvent('ply_essentialmode:getPlayerFromId', source, function(user)
+		TriggerEvent('es:getPlayerFromId', source, function(user)
 			user:removeMoney((price(licID)))
 		end)
 		MySQL.Async.execute("INSERT INTO user_licence (identifier,licence_id) VALUES (@identifier,@licID)",{['@identifier'] = getPlayerID(source), ['@licID'] = licID}, function(data)
